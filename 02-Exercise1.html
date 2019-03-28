@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 1</title>
+</head>
+
+<body>
+
+    <form>
+        <input type="email" placeholder="Email"><br>
+        <input type="password" placeholder="Mot de passe"><br>
+        <button>Connexion</button>
+    </form>
+
+    <!-- CONSIGNE : Avec l'aide de jQuery, vous devrez :
+    
+        1. A l'aide d'une API de Géolocalisation, vous affichez dans un paragraphe du formulaire l'adresse IP ainsi que la Ville et/ou Code Postal de l'internaute.
+        
+        // -- https://ipapi.co
+        // -- $.ajax() et $.getJSON()
+     
+    -->
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Mon script JS -->
+    <script>
+        $(function () {
+
+            // 2 façons possible de procéder:
+            // 1. Une requete AJAX simple:
+
+           $.ajax('http://ipapi.co/json/').done(function(data) {
+                console.log(data);
+           });
+
+           // 2. Get json, encore plus simple
+            $.getJSON('http://ipapi.co/json/', function (data) {
+                // console.log(data);
+                $(`
+                    <p>
+                        Votre IP est surveillé: ${data.ip}
+                        <br> ${data.city} - ${data.region}
+                    </p>
+                `).css({'background':'yellow', 'color':'red'}).appendTo( $('form') );
+            });
+
+        });// fin function
+    </script>
+</body>
+
+</html>
