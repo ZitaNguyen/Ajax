@@ -1,0 +1,147 @@
+<!-- 
+
+    1. Un formulaire permettant l'inscription d'un utilisateur à une newsletter. Vous utiliserez Bootstrap.
+
+        - email
+        - prenom
+        - nom
+    
+    2. Effectuer la validation jQuery des données du formulaire
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <title>Newsletter</title>
+</head>
+
+<body class="container mt-5">
+
+    <h1 class="text-center text-info  py-2">Newsletter</h1>
+
+    <form>
+
+        <div class="form-group  py-2">
+            <input type="text" placeholder="Votre email..." class="form-control" id="email">
+        </div>
+
+        <div class="form-group  py-2">
+            <input type="text" placeholder="Votre nom..." class="form-control" id="nom">
+        </div>
+
+        <div class="form-group  py-2">
+            <input type="text" placeholder="Votre prenom..." class="form-control" id="prenom">
+        </div>
+
+        <button class="btn btn-info btn-block" type="submit">Envoyez</button>
+    </form>
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+    <!-- Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <!-- JS Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!-- Mon JS -->
+    <script>
+        $(function () {
+
+            $('form').submit(function (e) {
+                e.preventDefault();
+
+                var email = $('#email').val();
+                var nom = $('#nom').val();
+                var prenom = $('#prenom').val();
+
+                //Validation Email
+                if (email.length != 0) {
+                    var re = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+                    var is_email = re.test(email);
+                    if (is_email) {
+                        $('#email').addClass('is-valid');
+                        $('#email').after(`
+                        <div class="valid-feedback">
+                            Email est correct!
+                        </div>
+                    `);
+                    }
+                    else {
+                        $('#email').addClass('is-invalid');
+                        $('#email').after(`
+                        <div class="invalid-feedback">
+                            Email n'est pas correct!
+                        </div>
+                    `);
+                    }
+                } else {
+                    $('#email').addClass('is-invalid');
+                        $('#email').after(`
+                        <div class="invalid-feedback">
+                            Email est vide!
+                        </div>
+                    `);
+                }
+
+                //Validation Nom
+                if (nom.length != 0) {
+                    $('#nom').addClass('is-valid');
+                    $('#nom').after(`
+                        <div class="valid-feedback">
+                            Nom est rempli!
+                        </div>
+                    `);
+                }
+                else {
+                    $('#nom').addClass('is-invalid');
+                    $('#nom').after(`
+                        <div class="invalid-feedback">
+                            Nom est vide!
+                        </div>
+                    `);
+                }
+
+                //Validation Prenom
+                if (prenom.length != 0) {
+                    $('#prenom').addClass('is-valid');
+                    $('#prenom').after(`
+                        <div class="valid-feedback">
+                            Prenom est rempli!
+                        </div>
+                    `);
+                }
+                else {
+                    $('#prenom').addClass('is-invalid');
+                    $('#prenom').after(`
+                        <div class="invalid-feedback">
+                            Prenom est vide!
+                        </div>
+                    `);
+                }
+            });
+
+        }); // end $(function(){})
+    </script>
+
+</body><!-- /.container -->
+
+</html>
