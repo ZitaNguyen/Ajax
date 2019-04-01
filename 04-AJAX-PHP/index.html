@@ -22,25 +22,26 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-    <title>Newsletter</title>
+    <title>Ajax et PHP</title>
+
 </head>
 
 <body class="container mt-5">
 
-    <h1 class="text-center text-info  py-2">Newsletter</h1>
+    <h1 class="text-center text-info py-2">Newsletter</h1>
 
-    <form>
+    <form id="newsletter" method="POST" action="newsletter.php" novalidate>
 
         <div class="form-group  py-2">
-            <input type="text" placeholder="Votre email..." class="form-control" id="email">
+            <input type="text" placeholder="Votre email..." class="form-control" id="email" name="email">
         </div>
 
         <div class="form-group  py-2">
-            <input type="text" placeholder="Votre nom..." class="form-control" id="nom">
+            <input type="text" placeholder="Votre nom..." class="form-control" id="nom" name="nom">
         </div>
 
         <div class="form-group  py-2">
-            <input type="text" placeholder="Votre prenom..." class="form-control" id="prenom">
+            <input type="text" placeholder="Votre prenom..." class="form-control" id="prenom" name="prenom">
         </div>
 
         <button class="btn btn-info btn-block" type="submit">Envoyez</button>
@@ -48,9 +49,7 @@
 
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
     <!-- Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -63,84 +62,7 @@
         crossorigin="anonymous"></script>
 
     <!-- Mon JS -->
-    <script>
-        $(function () {
-
-            $('form').submit(function (e) {
-                e.preventDefault();
-
-                var email = $('#email').val();
-                var nom = $('#nom').val();
-                var prenom = $('#prenom').val();
-
-                //Validation Email
-                if (email.length != 0) {
-                    var re = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-                    var is_email = re.test(email);
-                    if (is_email) {
-                        $('#email').addClass('is-valid');
-                        $('#email').after(`
-                        <div class="valid-feedback">
-                            Email est correct!
-                        </div>
-                    `);
-                    }
-                    else {
-                        $('#email').addClass('is-invalid');
-                        $('#email').after(`
-                        <div class="invalid-feedback">
-                            Email n'est pas correct!
-                        </div>
-                    `);
-                    }
-                } else {
-                    $('#email').addClass('is-invalid');
-                        $('#email').after(`
-                        <div class="invalid-feedback">
-                            Email est vide!
-                        </div>
-                    `);
-                }
-
-                //Validation Nom
-                if (nom.length != 0) {
-                    $('#nom').addClass('is-valid');
-                    $('#nom').after(`
-                        <div class="valid-feedback">
-                            Nom est rempli!
-                        </div>
-                    `);
-                }
-                else {
-                    $('#nom').addClass('is-invalid');
-                    $('#nom').after(`
-                        <div class="invalid-feedback">
-                            Nom est vide!
-                        </div>
-                    `);
-                }
-
-                //Validation Prenom
-                if (prenom.length != 0) {
-                    $('#prenom').addClass('is-valid');
-                    $('#prenom').after(`
-                        <div class="valid-feedback">
-                            Prenom est rempli!
-                        </div>
-                    `);
-                }
-                else {
-                    $('#prenom').addClass('is-invalid');
-                    $('#prenom').after(`
-                        <div class="invalid-feedback">
-                            Prenom est vide!
-                        </div>
-                    `);
-                }
-            });
-
-        }); // end $(function(){})
-    </script>
+    <script src="./assets/js/newsletter.js"></script>
 
 </body><!-- /.container -->
 
